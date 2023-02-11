@@ -1,0 +1,58 @@
+package by.tkany;
+
+import framework.BaseTest;
+
+public class Selectors extends BaseTest {
+    public static final String NAV_MENU_VISIBLE_LINK_BY_TEXT_XPATH = "//ul[@id='subMenu']/li[not(@class)]/a[contains(text(),'%s')]";
+    public static final String NAV_MENU_HIDE_BUTTON_XPATH = "//a[@class='removedItemsLink']";
+    public static final String NAV_MENU_HIDDEN_LINK_BY_TEXT_XPATH = "//ul[@class='removedItemsList']//a[contains(text(),'%s')]";
+    public static final String NAV_MENU_ICON_LINKS_BY_CLASS_XPATH = "//div[contains(@id,'headerLine') or contains(@id,'subHeader')]//a[contains(@class,'%s')]";
+    public static final String NAV_MENU_AUTH_LINKS_BY_TEXT_XPATH = "//div[@id='topAuth']//a[contains(text(),'%s')]";
+    public static final String NAV_MENU_PHONE_NUMBER_BY_TEXT_XPATH = "//div[@class='phonesTc']/span/a[contains(text(),'%s')]";
+    public static final String NAV_MENU_PHONE_ORDER_XPATH = "//a[contains(@class,'openWebFormModal')]";
+    public static final String FLOATING_FOOTER_XPATH = "//div[@id='footerLine']";
+    public static final String FLOATING_FOOTER_LINK_BY_TEXT_XPATH = "//div[@id='footerLine']//a[contains(text(),'%s')]";
+    public static final String SEARCH_FIELD_XPATH = "//input[@id='searchQuery']";
+    public static final String SEARCH_PRODUCT_FOUND_BY_TEXT_XPATH = "//div[@id='searchResult']//a[@class='name' and span[contains(text(),'%s')]]";
+    public static final String PRODUCT_ARTICLE_XPATH = "//span[@class='changeArticle']";
+    public static final String CALLBACK_WEBFORM_TITLE_BY_TEXT_XPATH = "//div[@class='webFormItemLabel' and contains(text(),'%s')]";
+    public static final String REGISTRATION_FORM_DIV_BY_TEXT_XPATH = "//div[@class='bx-auth-form-line' and div[contains(@class,'label') and contains(text(),'%s')]]";
+    public static final String REGISTRATION_BUTTON_XPATH = "//input[@name='Register']";
+    public static final String REGISTRATION_AGREE_LABEL_XPATH = "//label[@for='userPersonalInfoReg']";
+    public static final String LOGIN_FORM_DIV_BY_TEXT_XPATH = "//div[contains(@class,'auth-by-login')]//div[@class='bx-auth-input-line' and div[contains(@class,'label') and contains(text(),'%s')]]";
+    public static final String LOGIN_BUTTON_XPATH = "//div[contains(@class,'auth-by-login')]//input[@name='Login']";
+    public static final String USER_MENU_LINK_BY_TEXT_XPATH = "//ul[@id='personalMenu']//a[contains(text(),'%s')]";
+    public static final String CATEGORY_NAV_LINK_BY_TEXT_XPATH = "//div[@id='left']/a[contains(text(),'%1$s')] | //ul[@id='subLeftMenu']//a[contains(text(),'%1$s')] | //span[@class='tx']//span[@class='link-title' and contains(text(),'%1$s')]//ancestor::a";
+    public static final String CATALOG_MAIN_CATEGORY_BY_TEXT_XPATH = CATEGORY_NAV_LINK_BY_TEXT_XPATH.split(" \\| ")[2];
+    public static final String CATALOG_MENU_TOGGLE_XPATH = String.format(CATEGORY_NAV_LINK_BY_TEXT_XPATH.split(" \\| ")[0], "");
+    public static final String CATALOG_NAV_SUBCATEGORIES_BY_CATEGORY_AND_SUB_TEXT_XPATH = CATALOG_MAIN_CATEGORY_BY_TEXT_XPATH + "//following-sibling::div//span[contains(text(),'%2$s')]";
+    public static final String CATALOG_SUBCATEGORY_FROM_CATEGORY_PAGE_BY_TEXT_XPATH = "//div[@id='nextSection']//a[not(@class='cnt') and contains(text(),'%s')]";
+    public static final String CATALOG_FILTER_PARAMETER_BOX_BY_TEXT_XPATH = "//div[@class='paramsBox' and div/span[contains(text(),'%s')]]";
+    public static final String CATALOG_FILTER_COLOR_PARAMETER_BY_TEXT_XPATH = "//ul[contains(@class,'checkboxList')]//span[contains(@title,'%s')]";
+    public static final String CATALOG_FILTER_PARAMETER_CHECKBOX_BY_TEXT_XPATH =".//ul[@class='checkbox']//label[contains(text(),'%s')]";
+    public static final String CATALOG_FILTER_EXPAND_BUTTON_XPATH ="./ins[contains(@class,'propExpander')]";
+    public static final String CATALOG_FILTER_MORE_BUTTON_XPATH = ".//a[@class='showALL']";
+    public static final String CATALOG_BREADCRUMBS_LINK_BY_TEXT_XPATH = "//div[@id='breadcrumbs']//a[span[contains(text(),'%s')]]";
+    public static final String CATALOG_PRODUCT_LINK_BY_TEXT_XPATH = "//div[@id='catalogSection']//a[@class='name' and span[contains(text(),'%s')]]";
+    public static final String CATALOG_PAGINATION_LINK_BY_TEXT_XPATH = "//div[contains(@class,'pagination')]//li[//span[contains(text(),'%s')]]";
+    public static final String CATALOG_VIEW_FILTER_BY_TEXT_XPATH = "//div[@class='label' and contains(text(),'%s')]/following-sibling::div";
+    public static final String CATALOG_VIEW_FILTER_OPENED_DROPDOWN_ITEM_BY_TEXT_XPATH = "//div[@class='dropDownItems opened']/div[contains(text(),'%s')]";
+    public static final String PRODUCT_HEADER_XPATH = "//h1[@class='changeName']";
+    public static final String DESKTOP_PRODUCT_NAVIGATION_TAB_BY_TEXT_XPATH = "//div[@id='elementNavigation']//div[@class='tab' or @class='tab active']/a[contains(text(),'%s')]";
+    public static final String DESKTOP_PRODUCT_ADD_TO_CART_BUTTON_XPATH = "//div[@id='elementTools']//a[contains(@class,'addCart')]";
+    public static final String DESKTOP_PRODUCT_FAST_ORDER_BUTTON_XPATH = "//div[@id='elementTools']//a[contains(@class,'fastBack')]";
+    public static final String PRODUCT_SHORT_DESCRIPTION_XPATH = "//div[@class='changeShortDescription']";
+    public static final String PRODUCT_ATTRIBUTE_ROW_BY_FiRST_COLUMN_XPATH = "//div[@class='detailPropertiesTable']//tr[td/span[contains(text(),'%s')]]";
+    public static final String FAST_ORDER_INPUT_FIELD_BY_PLACEHOLDER_XPATH = "//div[contains(@class,'formLine')]//input[contains(@placeholder,'%s')]";
+    public static final String DESKTOP_INFORMATION_BUTTON_BY_PLUS_OR_MINUS_CLASS_XPATH = "//div[@class='information']//a[@class='%s']";
+    public static final String DESKTOP_INFORMATION_GO_TO_BASKET_BUTTON_XPATH = "//div[@id='appBasketContainer']//td[@class='goToBasket']";
+    public static final String DESKTOP_CART_PRODUCT_CARD_BY_TEXT_XPATH = "//div[@id='personalCart']//div[@class='productTable']//a/span[contains(text(),'%s')]/ancestor::div[@class='tabloid']";
+    public static final String DESKTOP_CART_GO_TO_ORDER_BUTTON_XPATH = "//div[@id='personalCart']/following-sibling::a";
+    public static final String DESKTOP_CART_FORM_NEXT_BUTTON_XPATH = "//div[contains(@class,'bx-active')]//div//a[contains(@class,'pull-right btn btn-default btn-md')]";
+    public static final String DESKTOP_CART_FORM_CITY_BY_TEXT_XPATH = "//div[not(contains(@style,'none'))]/child::*/child::div/a[@class='quick-location-tag' and contains(text(),'%s')]";
+    public static final String DESKTOP_CART_FORM_DELIVERY_BY_TEXT_XPATH = "//div[not(contains(@style,'none'))]/child::*/child::div/a[@class='quick-location-tag' and contains(text(),'%s')]";
+    public static final String DESKTOP_CART_FORM_PAYMENT_BY_TEXT_XPATH = "//div[div[input[@name='PAY_SYSTEM_ID']] and div[contains(text(),'%s')]]";
+    public static final String DESKTOP_CART_FORM_PAYER_INFO_BY_TEXT_XPATH = "//div[@class='form-group bx-soa-customer-field' and label[contains(text(),'%s')]]//input";
+    public static final String DESKTOP_CART_FORM_END_ORDER_BUTTON_XPATH = "//div[@id='bx-soa-orderSave']/a";
+    public static final String BACK_TO_TOP_BUTTON_XPATH = "//div[@id='upButton']";
+}

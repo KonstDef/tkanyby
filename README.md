@@ -5,9 +5,9 @@ tkany.by autotests
 Made as diploma for Stormnet courses.
 
 #### Requires
-JDK 11
+JDK 11  
 maven 3.8.6
 
 #### Maven prompt command
-run via 
+run via  
 `mvn clean test -DsuiteXmlFiles=testng.xml`

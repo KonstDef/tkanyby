@@ -12,12 +12,13 @@ public class PropertyReader{
     }
 
     public PropertyReader(final String resourceName) {
-        properties = appendFromResource(properties, resourceName);
+        this.appendFromResource(properties, resourceName);
     }
+
 
     public PropertyReader(final String defaultResourceName, final String resourceName) {
         this(defaultResourceName);
-        properties = appendFromResource(new Properties(properties), resourceName);
+        this.appendFromResource(new Properties(properties), resourceName);
     }
 
     private Properties appendFromResource(final Properties objProperties, final String resourceName) {
@@ -30,8 +31,9 @@ public class PropertyReader{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else
-            System.err.printf("Resource \"%1$s\" could not be found%n", resourceName);
+        } else {
+            System.err.printf("Resource \"%1$s\" could not be found\n", resourceName);
+        }
         return objProperties;
     }
 

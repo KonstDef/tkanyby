@@ -8,9 +8,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class DriverFactory{
+public class DriverFactory {
     public static WebDriver getDriver(){
-        String browser = new PropertyReader("config.properties").getProperty("browser");
+        String browser = PropertyReader.getProperty("browser");
 
         switch (browser){
             case "chrome":

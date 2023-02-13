@@ -23,9 +23,9 @@ public class Selectors extends BaseTest {
     public static final String LOGIN_BUTTON_XPATH = "//div[contains(@class,'auth-by-login')]//input[@name='Login']";
     public static final String USER_MENU_LINK_BY_TEXT_XPATH = "//ul[@id='personalMenu']//a[contains(text(),'%s')]";
     public static final String CATEGORY_NAV_LINK_BY_TEXT_XPATH = "//div[@id='left']/a[contains(text(),'%1$s')] | //ul[@id='subLeftMenu']//a[contains(text(),'%1$s')] | //span[@class='tx']//span[@class='link-title' and contains(text(),'%1$s')]//ancestor::a";
-    public static final String CATALOG_MAIN_CATEGORY_BY_TEXT_XPATH = CATEGORY_NAV_LINK_BY_TEXT_XPATH.split(" \\| ")[2];
-    public static final String CATALOG_MENU_TOGGLE_XPATH = String.format(CATEGORY_NAV_LINK_BY_TEXT_XPATH.split(" \\| ")[0], "");
-    public static final String CATALOG_NAV_SUBCATEGORIES_BY_CATEGORY_AND_SUB_TEXT_XPATH = CATALOG_MAIN_CATEGORY_BY_TEXT_XPATH + "//following-sibling::div//span[contains(text(),'%2$s')]";
+    public static final String CATALOG_MAIN_CATEGORY_BY_TEXT_XPATH = "//span[@class='tx']//span[@class='link-title' and contains(text(),'%1$s')]//ancestor::a";
+    public static final String CATALOG_MENU_TOGGLE_XPATH = "//div[@id='left']/a";
+    public static final String CATALOG_NAV_SUBCATEGORIES_BY_ACTIVE_SUBCATEGORY_TEXT_XPATH = "//div[contains(@style,'table')]/ul[@class='menuItems']//li[a/span[contains(text(),'%1$s')] or a[contains(text(),'%1$s')]]";
     public static final String CATALOG_SUBCATEGORY_FROM_CATEGORY_PAGE_BY_TEXT_XPATH = "//div[@id='nextSection']//a[not(@class='cnt') and contains(text(),'%s')]";
     public static final String CATALOG_FILTER_PARAMETER_BOX_BY_TEXT_XPATH = "//div[@class='paramsBox' and div/span[contains(text(),'%s')]]";
     public static final String CATALOG_FILTER_COLOR_PARAMETER_BY_TEXT_XPATH = "//ul[contains(@class,'checkboxList')]//span[contains(@title,'%s')]";

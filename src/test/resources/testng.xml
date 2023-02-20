@@ -3,8 +3,18 @@
 <suite name="tkany.by" parallel="tests" thread-count="1">
     <test name="test">
         <classes>
-            <class name="by.tkany.NavMenuCollapseTest"/>
-            <class name="by.tkany.CatalogFilterTest"/>
+            <class name="by.tkany.test.NavMenuCollapseTest"/>
+            <class name="by.tkany.test.NavMenuLinksTest"/>
+            <class name="by.tkany.test.FloatingMenuTest"/>
+            <class name="by.tkany.test.ProductSearchTest"/>
+            <class name="by.tkany.test.CallbackFormTest"/>
+            <class name="by.tkany.test.CatalogMenuLinksTest"/>
+            <class name="by.tkany.test.CatalogSubMenuTest"/>
+            <class name="by.tkany.test.CatalogContainersTest"/>
+            <class name="by.tkany.test.CatalogFilterTest"/>
+            <class name="by.tkany.test.FastViewTest"/>
+            <class name="by.tkany.test.ProductPageContainersTest"/>
+            <class name="by.tkany.test.BackToHeaderTest"/>
         </classes>
     </test>
 </suite>

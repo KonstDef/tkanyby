@@ -12,13 +12,13 @@ public class PropertyReader{
     }
 
     public PropertyReader(final String resourceName) {
-        this.appendFromResource(properties, resourceName);
+        properties = appendFromResource(properties, resourceName);
     }
 
 
     public PropertyReader(final String defaultResourceName, final String resourceName) {
         this(defaultResourceName);
-        this.appendFromResource(new Properties(properties), resourceName);
+        properties = appendFromResource(new Properties(properties), resourceName);
     }
 
     private Properties appendFromResource(final Properties objProperties, final String resourceName) {
@@ -32,7 +32,7 @@ public class PropertyReader{
                 e.printStackTrace();
             }
         } else {
-            System.err.printf("Resource \"%1$s\" could not be found\n", resourceName);
+            System.err.println(String.format("Resource \"%1$s\" could not be found", resourceName));
         }
         return objProperties;
     }
@@ -51,5 +51,8 @@ public class PropertyReader{
 
     public static int getIntProperty(final String key) {
         return Integer.parseInt(getProperty(String.valueOf(key)));
+    }
+    public static Boolean getBooleanProperty(final String key) {
+        return Boolean.parseBoolean(getProperty(String.valueOf(key)));
     }
 }

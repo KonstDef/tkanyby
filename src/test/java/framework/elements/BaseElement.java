@@ -1,6 +1,7 @@
 package framework.elements;
 
 import framework.Browser;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import java.util.ArrayList;
@@ -72,10 +73,12 @@ public abstract class BaseElement {
 //        elements.forEach(consumer);
 //    }
 
+    @Step("Check {name} is displayed.")
     public boolean isDisplayed() {
         return isElementPresent();
     }
 
+    @Step
     public String getAttribute(String attributeName) {
         isElementPresent();
         String attributeValue = element.getAttribute(attributeName);
@@ -84,6 +87,7 @@ public abstract class BaseElement {
         return attributeValue;
     }
 
+    @Step
     public String getText() {
         isElementPresent();
         String elementText = element.getText();
@@ -92,6 +96,7 @@ public abstract class BaseElement {
         return elementText;
     }
 
+    @Step
     public List<String> getTextList() {
         areElementsPresent();
         List<String> elementTextList = new ArrayList<>();
@@ -103,23 +108,26 @@ public abstract class BaseElement {
         return elementTextList;
     }
 
+    @Step
     public int countElements() {
         areElementsPresent();
         return elements.size();
     }
-
+    @Step("Scroll to {name}.")
     public void scrollTo() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
         actions.scrollToElement(element).build().perform();
     }
 
+    @Step
     public void click() {
         isElementPresent();
         element.click();
         System.out.printf("%s: %s - clicked;\n", getElementType(), by);
     }
 
+    @Step
     public void clickByAction() {
         isElementPresent();
         Actions action = new Actions(Browser.getDriver());
@@ -127,35 +135,40 @@ public abstract class BaseElement {
         System.out.printf("%s: %s - clicked;\n", getElementType(), by);
     }
 
+    @Step
     public void clickAndWait() {
         click();
         Browser.waitForPageToLoad();
     }
 
-
+    @Step
     public void moveTo() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
         actions.moveToElement(element).build().perform();
     }
 
+    @Step
     public void moveToTop() {
         moveTo();
         JavascriptExecutor js = (JavascriptExecutor) Browser.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
+    @Step
     public void moveAndClickByAction() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
         actions.moveToElement(element).click(element).build().perform();
     }
 
+    @Step
     public void sendKeys(String keys) {
         isElementPresent();
         element.sendKeys(keys);
     }
 
+    @Step
     public void clickByJS() {
         isElementPresent();
         if (Browser.getDriver() instanceof JavascriptExecutor) {

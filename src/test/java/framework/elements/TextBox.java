@@ -1,5 +1,6 @@
 package framework.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class TextBox extends BaseElement{
@@ -14,5 +15,10 @@ public class TextBox extends BaseElement{
     @Override
     protected String getElementType() {
         return "TextBox";
+    }
+
+    @Step("Scroll to textbox.")
+    public void scrollTo() {
+        super.scrollTo();
     }
 }

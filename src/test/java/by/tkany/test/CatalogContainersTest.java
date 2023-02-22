@@ -2,7 +2,7 @@ package by.tkany.test;
 
 import by.tkany.testData.DataProviders;
 import framework.BaseTest;
-import framework.elements.Label;
+import framework.elements.*;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

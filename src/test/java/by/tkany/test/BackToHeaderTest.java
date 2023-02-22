@@ -2,10 +2,8 @@ package by.tkany.test;
 
 import framework.BaseTest;
 import framework.Browser;
-import framework.elements.Label;
-import framework.elements.TextBox;
+import framework.elements.*;
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -17,8 +15,8 @@ public class BackToHeaderTest extends BaseTest {
     public void test20() {
         TextBox footerBar = new TextBox(By.id(FOOTER_BAR_ID));
         footerBar.scrollTo();
-        Label arrowButton = new Label(By.xpath(BACK_TO_TOP_BUTTON_XPATH));
 
+        Label arrowButton = new Label(By.xpath(BACK_TO_TOP_BUTTON_XPATH));
         arrowButton.moveAndClickByAction();
         try {
             Browser.explicitlyWaitUntil(driver.viewIsOnTop);

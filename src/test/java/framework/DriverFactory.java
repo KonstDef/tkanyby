@@ -15,7 +15,7 @@ public class DriverFactory {
 
         boolean isHeadless = properties.getBooleanProperty("headless");
         String headless = isHeadless ? "--headless" : "";
-        String windowSize = "--" + properties.getProperty("window_size");
+        String windowSize = "--window-size=" + properties.getProperty("window_size");
 
         String[] args = new String[]{headless, windowSize};
 

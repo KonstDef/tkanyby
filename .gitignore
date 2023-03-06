@@ -1,4 +1,8 @@
 /target/
+/.allure
+/allure-results
 /.idea
 *.iml
 Tests.txt
+/src/test/java/by/tkany/tests/inP
+/src/test/java/by/tkany/tests/inP/*.java

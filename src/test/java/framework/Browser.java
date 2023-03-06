@@ -53,7 +53,7 @@ public class Browser {
         try {
             driver.manage().window().maximize();
         } catch (Exception e) {
-            Assert.fail("Driver not initialized");
+            Assert.fail("Maximize fail: Driver was not initialized");
         }
     }
 
@@ -111,6 +111,11 @@ public class Browser {
     public static <T, R> void explicitlyWaitUntil(Function<? super WebDriver, R> isTrue) throws TimeoutException {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(getTimeoutForCondition()));
         wait.until(isTrue);
+    }
+
+    public static void goBack() {
+        driver.navigate().back();
+        waitForPageToLoad();
     }
 
     public void exit() {

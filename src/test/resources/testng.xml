@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="tkany.by" parallel="tests" thread-count="1">
-    <test name="test">
+    <test name="Tests">
         <classes>
-            <class name="by.tkany.test.NavMenuCollapseTest"/>
-            <class name="by.tkany.test.NavMenuLinksTest"/>
-            <class name="by.tkany.test.FloatingMenuTest"/>
-            <class name="by.tkany.test.ProductSearchTest"/>
-            <class name="by.tkany.test.CallbackFormTest"/>
-            <class name="by.tkany.test.CatalogMenuLinksTest"/>
-            <class name="by.tkany.test.CatalogSubMenuTest"/>
-            <class name="by.tkany.test.CatalogContainersTest"/>
-            <class name="by.tkany.test.CatalogFilterTest"/>
-            <class name="by.tkany.test.FastViewTest"/>
-            <class name="by.tkany.test.ProductPageContainersTest"/>
-            <class name="by.tkany.test.BackToHeaderTest"/>
+            <class name="by.tkany.tests.NavMenuCollapseTest"/>
+            <class name="by.tkany.tests.NavMenuLinksTest"/>
+            <class name="by.tkany.tests.FloatingMenuTest"/>
+            <class name="by.tkany.tests.ProductSearchTest"/>
+            <class name="by.tkany.tests.CallbackFormTest"/>
+            <class name="by.tkany.tests.CatalogueMenuLinksTest"/>
+            <class name="by.tkany.tests.CatalogueSubMenuTest"/>
+            <class name="by.tkany.tests.CatalogueContainersTest"/>
+            <class name="by.tkany.tests.CatalogueFilterTest"/>
         </classes>
     </test>
 </suite>

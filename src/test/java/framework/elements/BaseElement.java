@@ -1,18 +1,25 @@
 package framework.elements;
 
-import framework.Browser;
-import io.qameta.allure.Step;
+import framework.*;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.*;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+@Log4j2
 public abstract class BaseElement {
+    public static String containsText = "contains(translate(normalize-space(.),' ',' '),'%s')";
     protected WebElement element;
     protected List<WebElement> elements;
+    private PropertyReader logProperties = new PropertyReader("log.properties");
     private By by;
     private String name;
 
@@ -41,13 +48,13 @@ public abstract class BaseElement {
         try {
             Browser.getDriver().manage().timeouts().implicitlyWait(Browser.getTimeoutForCondition(), TimeUnit.SECONDS);
             element = Browser.getDriver().findElement(by);
-            System.out.printf("%s: %s - is present;\n", getElementType(), by);
+            log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("present")));
             return element.isDisplayed();
         } catch (NoSuchElementException e) {
-            System.out.printf("%s: %s - is not present;\n \"NoSuchElementException\"\n", getElementType(), by);
+            log.info(String.format("%s: %s - %s;\n \"NoSuchElementException\"", getElementType(), by, logProperties.getProperty("presentFailure")));
             return false;
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            log.warn(String.format("%s: %s - Exception: %s", getElementType(), by, e));
         }
         return false;
     }
@@ -57,46 +64,52 @@ public abstract class BaseElement {
             Browser.getDriver().manage().timeouts().implicitlyWait(Browser.getTimeoutForCondition(), TimeUnit.SECONDS);
             elements = Browser.getDriver().findElements(by);
 
-            System.out.printf("%s(%d): %s - are present;\n", getElementType(), elements.size(), by);
+            log.info(String.format("%s(%d): %s - %s;", getElementType(), elements.size(), by, logProperties.getProperty("presents")));
             long elementsPresentNum = elements.stream().filter(WebElement::isDisplayed).count();
             return elementsPresentNum > 0;
         } catch (NoSuchElementException e) {
-            System.out.printf("%s: %s - are not present;\n \"NoSuchElementException\"\n", getElementType(), by);
+            log.info(String.format("%s: %s - %s; \"NoSuchElementException\"", getElementType(), by, logProperties.getProperty("presentsFailure")));
             return false;
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            log.warn(String.format(("Exception: " + e)));
         }
         return false;
     }
 
-//    public void forEach(Consumer<WebElement> consumer) {
-//        elements.forEach(consumer);
-//    }
-
-    @Step("Check {name} is displayed.")
     public boolean isDisplayed() {
         return isElementPresent();
     }
 
-    @Step
+    public boolean isClickable() {
+        isElementPresent();
+        try {
+            new WebDriverWait(Browser.getDriver(), Duration.ZERO)
+                    .until(ExpectedConditions.elementToBeClickable(element));
+            return true;
+        } catch (TimeoutException timeoutException) {
+            log.error(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("clickFailure")));
+        } catch (ElementNotInteractableException elementNotInteractableException){
+            return false;
+        }
+        return false;
+    }
+
     public String getAttribute(String attributeName) {
         isElementPresent();
         String attributeValue = element.getAttribute(attributeName);
 
-        System.out.printf("%s: %s - has '%s' attribute = %s;\n", getElementType(), by, attributeName, attributeValue);
+        log.info(String.format("%s: %s - %s '%s' = %s;", getElementType(), by, logProperties.getProperty("attribute"), attributeName, attributeValue));
         return attributeValue;
     }
 
-    @Step
     public String getText() {
         isElementPresent();
         String elementText = element.getText();
 
-        System.out.printf("%s: %s - has text = %s;\n", getElementType(), by, elementText);
+        log.info(String.format("%s: %s - %s = %s;", getElementType(), by, logProperties.getProperty("text"), elementText));
         return elementText;
     }
 
-    @Step
     public List<String> getTextList() {
         areElementsPresent();
         List<String> elementTextList = new ArrayList<>();
@@ -104,76 +117,96 @@ public abstract class BaseElement {
 
         long nonEmpty = elementTextList.stream().filter(Predicate.not(String::isBlank)).count();
 
-        System.out.printf("%s: %s - has %d non empty Strings;\n", getElementType(), by, nonEmpty);
+        log.info(String.format("%s: %s - %s(%d);", getElementType(), by, logProperties.getProperty("textList"), nonEmpty));
         return elementTextList;
     }
 
-    @Step
     public int countElements() {
         areElementsPresent();
         return elements.size();
     }
-    @Step("Scroll to {name}.")
+
+    public void forEach(Consumer<WebElement> consumer) {
+        areElementsPresent();
+        elements.forEach(consumer);
+    }
+
     public void scrollTo() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
+        log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("scroll")));
         actions.scrollToElement(element).build().perform();
     }
 
-    @Step
     public void click() {
         isElementPresent();
         element.click();
-        System.out.printf("%s: %s - clicked;\n", getElementType(), by);
+        log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("sendKeys")));
     }
 
-    @Step
     public void clickByAction() {
         isElementPresent();
         Actions action = new Actions(Browser.getDriver());
         action.click(element).build().perform();
-        System.out.printf("%s: %s - clicked;\n", getElementType(), by);
+        log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("sendKeys")));
     }
 
-    @Step
+    public void waitForElementAttachment() {
+        FluentWait<WebDriver> wait = new FluentWait<>(Browser.getDriver())
+                .withTimeout(Duration.ofSeconds(Browser.getTimeoutForCondition()))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(StaleElementReferenceException.class);
+
+        wait.until(driver -> this.isElementPresent());
+    }
+
+    public void waitToStale() {
+        isElementPresent();
+        Browser.explicitlyWaitUntil(ExpectedConditions.stalenessOf(element));
+    }
+
     public void clickAndWait() {
         click();
         Browser.waitForPageToLoad();
     }
 
-    @Step
     public void moveTo() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
         actions.moveToElement(element).build().perform();
     }
 
-    @Step
-    public void moveToTop() {
+    public void scrollIntoView() {
         moveTo();
         JavascriptExecutor js = (JavascriptExecutor) Browser.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    @Step
     public void moveAndClickByAction() {
         isElementPresent();
         Actions actions = new Actions(Browser.getDriver());
         actions.moveToElement(element).click(element).build().perform();
+        log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("click")));
     }
 
-    @Step
     public void sendKeys(String keys) {
         isElementPresent();
         element.sendKeys(keys);
+        log.info(String.format("%s: %s - %s '%s';", getElementType(), by, logProperties.getProperty("sendKeys"), keys));
     }
 
-    @Step
+    public void sendKeysToIndex(int i, String keys) {
+        areElementsPresent();
+        elements.get(i).sendKeys(keys);
+        log.info(String.format("%s: %s[%d] - %s '%s';", getElementType(), by, i, logProperties.getProperty("sendKeys"), keys));
+    }
+
     public void clickByJS() {
         isElementPresent();
         if (Browser.getDriver() instanceof JavascriptExecutor) {
             ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].style.border='3px solid blue'", element);
         }
         ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].click()", element);
+        log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("clickByJS")));
     }
 }

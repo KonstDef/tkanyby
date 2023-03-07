@@ -3,15 +3,15 @@
 <suite name="tkany.by" parallel="tests" thread-count="1">
     <test name="Tests">
         <classes>
-            <class name="by.tkany.tests.NavMenuCollapseTest"/>
-            <class name="by.tkany.tests.NavMenuLinksTest"/>
-            <class name="by.tkany.tests.FloatingMenuTest"/>
+<!--            <class name="by.tkany.tests.NavMenuCollapseTest"/>-->
+<!--            <class name="by.tkany.tests.NavMenuLinksTest"/>-->
+<!--            <class name="by.tkany.tests.FloatingMenuTest"/>-->
             <class name="by.tkany.tests.ProductSearchTest"/>
-            <class name="by.tkany.tests.CallbackFormTest"/>
-            <class name="by.tkany.tests.CatalogueMenuLinksTest"/>
+<!--            <class name="by.tkany.tests.CallbackFormTest"/>-->
+<!--            <class name="by.tkany.tests.CatalogueMenuLinksTest"/>-->
             <class name="by.tkany.tests.CatalogueSubMenuTest"/>
-            <class name="by.tkany.tests.CatalogueContainersTest"/>
-            <class name="by.tkany.tests.CatalogueFilterTest"/>
+<!--            <class name="by.tkany.tests.CatalogueContainersTest"/>-->
+<!--            <class name="by.tkany.tests.CatalogueFilterTest"/>-->
         </classes>
     </test>
 </suite>

@@ -1,10 +1,8 @@
 package by.tkany.pageObjects.pageComponents;
 
 import by.tkany.pageObjects.ProductPage;
-import framework.Browser;
 import framework.elements.Label;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductCardComponent {
     private final String PRODUCT_NAME_XPATH = "//a[@class='name']";
@@ -32,7 +30,7 @@ public class ProductCardComponent {
 
     public ProductPage openProductPage(){
         Label ProductName = new Label(By.xpath(CARD_PATH+PRODUCT_NAME_XPATH));
-        ProductName.waitToStale();
+        ProductName.waitForElementAttachment();
         ProductName.scrollIntoView();
         ProductName.clickAndWait();
         return new ProductPage(PRODUCT_NAME);

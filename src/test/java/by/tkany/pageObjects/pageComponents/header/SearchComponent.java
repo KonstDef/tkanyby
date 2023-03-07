@@ -3,11 +3,9 @@ package by.tkany.pageObjects.pageComponents.header;
 import by.tkany.pageObjects.BaseByTkanyPage;
 import by.tkany.pageObjects.ProductPage;
 import by.tkany.pageObjects.pageComponents.ProductCardComponent;
-import framework.elements.Label;
 import framework.elements.TextBox;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 public class SearchComponent {
     private final TextBox SEARCH_FIELD = new TextBox(By.xpath("//input[@id='searchQuery']"));

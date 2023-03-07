@@ -31,7 +31,7 @@ public class BaseSteps {
     }
 
     @After
-    public void takeScreenShotAfterStep(Scenario scenario) throws IOException {
+    public void takeScreenShotAfterStep(Scenario scenario){
         if (scenario.isFailed()) {
             final byte[] screenShot = ((TakesScreenshot) Browser.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenShot, "image/jpg", scenario.getName());

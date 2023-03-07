@@ -34,8 +34,8 @@ public class Browser {
             try {
                 driver = DriverFactory.getDriver();
                 driver.manage().timeouts().implicitlyWait(timeoutForCondition, TimeUnit.SECONDS);
-            } catch (Exception e) {
-                Assert.fail("Driver has no instance");
+            }catch (Exception e) {
+                Assert.fail("Driver was not initialized");
             }
             initProperties();
             instance = new Browser();
@@ -87,15 +87,13 @@ public class Browser {
     public static void waitForPageToLoad() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(getTimeoutForPageLoad()));
         try {
-            wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
-                public Boolean apply(final WebDriver d) {
-                    if (!(d instanceof JavascriptExecutor)) {
-                        return true;
-                    }
-                    Object result = ((JavascriptExecutor) d)
-                            .executeScript("return document['readyState'] ? 'complete' === document.readyState : true");
-                    return result instanceof Boolean && (Boolean) result;
+            wait.until((ExpectedCondition<Boolean>) d -> {
+                if (!(d instanceof JavascriptExecutor)) {
+                    return true;
                 }
+                Object result = ((JavascriptExecutor) d)
+                        .executeScript("return document['readyState'] ? 'complete' === document.readyState : true");
+                return result instanceof Boolean && (Boolean) result;
             });
             System.out.printf("Page %s(%s) loaded successfully\n", driver.getTitle(), driver.getCurrentUrl());
         } catch (Exception e) {

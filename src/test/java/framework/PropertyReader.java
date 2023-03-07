@@ -1,9 +1,12 @@
 package framework;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+@Log4j2
 public class PropertyReader{
     private static Properties properties = new Properties();
 
@@ -32,7 +35,7 @@ public class PropertyReader{
                 e.printStackTrace();
             }
         } else {
-            System.err.println(String.format("Resource \"%1$s\" could not be found", resourceName));
+            log.error(String.format("Resource \"%1$s\" could not be found", resourceName));
         }
         return objProperties;
     }

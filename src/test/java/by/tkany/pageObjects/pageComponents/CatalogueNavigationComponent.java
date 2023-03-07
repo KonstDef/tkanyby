@@ -1,7 +1,6 @@
 package by.tkany.pageObjects.pageComponents;
 
 import by.tkany.pageObjects.*;
-import framework.Browser;
 import framework.elements.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

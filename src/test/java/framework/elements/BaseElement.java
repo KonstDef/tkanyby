@@ -155,7 +155,8 @@ public abstract class BaseElement {
         FluentWait<WebDriver> wait = new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(Browser.getTimeoutForCondition()))
                 .pollingEvery(Duration.ofMillis(100))
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
 
         wait.until(driver -> this.isElementPresent());
     }

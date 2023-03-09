@@ -123,4 +123,17 @@ public class LandingSteps {
     public void catalogSubNavigation(String title){
         catalogue = landing.getCatalogueNavigation().openSubMenu(title);
     }
+    @When ("User clicks on \"Back to top\" button")
+    public void backToTop(){
+        landing.getFloater().backToTop();
+    }
+    @Then ("Screen is returned to top")
+    public void isOnTop(){
+        landing.getFloater().assertIsOnTop();
+    }
+    @Then ("\"Back to top\" button {string} visible")
+    public void backToTopVisible(String title){
+        boolean expected = title.equals("is");
+        landing.getFloater().assertBackToTopVisible(expected);
+    }
 }

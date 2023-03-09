@@ -21,5 +21,4 @@ public class Selectors{
     public static final String DESKTOP_CART_FORM_PAYMENT_BY_TEXT_XPATH = "//div[div[input[@name='PAY_SYSTEM_ID']] and div[contains(text(),'%s')]]";
     public static final String DESKTOP_CART_FORM_PAYER_INFO_BY_TEXT_XPATH = "//div[@class='form-group bx-soa-customer-field' and label[contains(text(),'%s')]]//input";
     public static final String DESKTOP_CART_FORM_END_ORDER_BUTTON_XPATH = "//div[@id='bx-soa-orderSave']/a";
-    public static final String BACK_TO_TOP_BUTTON_XPATH = "//div[@id='upButton']";
 }

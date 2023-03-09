@@ -26,7 +26,7 @@ public class Browser {
 
     private static PropertyReader props;
 
-    public Function<? super WebDriver, Boolean> viewIsOnTop =
+    public static Function<? super WebDriver, Boolean> viewIsOnTop =
             (Function<WebDriver, Boolean>) webDriver -> getPageOffset().get(1) == 0;
 
     public Browser getInstance() {
@@ -65,7 +65,7 @@ public class Browser {
         return driver.getCurrentUrl();
     }
 
-    public List<Long> getPageOffset() {
+    public static List<Long> getPageOffset() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         long x = (Long) js.executeScript("return window.pageXOffset;");
         long y = (Long) js.executeScript("return window.pageYOffset;");

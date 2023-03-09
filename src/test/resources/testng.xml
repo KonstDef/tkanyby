@@ -13,6 +13,7 @@
             <class name="by.tkany.tests.CatalogueContainersTest"/>
             <class name="by.tkany.tests.CatalogueFilterTest"/>
             <class name="by.tkany.tests.FastViewTest"/>
+            <class name="by.tkany.tests.BackToTopTest"/>
         </classes>
     </test>
 </suite>

@@ -6,15 +6,6 @@ public class Selectors{
     public static final String LOGIN_FORM_DIV_BY_TEXT_XPATH = "//div[contains(@class,'auth-by-login')]//div[@class='bx-auth-input-line' and div[contains(@class,'label') and contains(text(),'%s')]]";
     public static final String LOGIN_BUTTON_XPATH = "//div[contains(@class,'auth-by-login')]//input[@name='Login']";
     public static final String USER_MENU_LINK_BY_TEXT_XPATH = "//ul[@id='personalMenu']//a[contains(text(),'%s')]";
-    public static final String CATALOG_PRODUCT_FAST_VIEW_BUTTON_BY_TEXT_LINK_XPATH = "//div[@id='catalogSection']//a[@class='name' and span[contains(text(),'%s')]]/ancestor::div[@class='productTable']//span[@class='getFastView']";
-    public static final String CATALOG_VIEW_FILTER_BY_TEXT_XPATH = "//div[@class='label' and contains(text(),'%s')]/following-sibling::div";
-    public static final String CATALOG_VIEW_FILTER_OPENED_DROPDOWN_ITEM_BY_TEXT_XPATH = "//div[@class='dropDownItems opened']/div[contains(text(),'%s')]";
-    public static final String CATALOG_FAST_VIEW_CLASSNAME = "appFastViewHeading";
-    public static final String CATALOG_FAST_VIEW_TITLE_BY_XPATH = "//span[contains(@class,'Heading')]";
-    public static final String CATALOG_FAST_VIEW_ADD_TO_CART_BY_XPATH = "//div[contains(@class,'ViewInformation')]/a[contains(@class,'addCart')]";
-    public static final String CATALOG_FAST_VIEW_IMAGE_BY_XPATH = "//img[contains(@class,'FastViewPicture')]";
-    public static final String CATALOG_FAST_VIEW_MORE_LINK_BY_XPATH = "//a[contains(@class,'MoreLink')]";
-    public static final String CATALOG_FAST_VIEW_PROPERTIES_BY_CLASSNAME = "propertyList";
     public static final String PRODUCT_HEADER_XPATH = "//h1[@class='changeName']";
     public static final String PRODUCT_NAVIGATION_TAB_BY_TEXT_XPATH = "//div[@id='elementNavigation']//div[@class='tab' or @class='tab active']/a[contains(text(),'%1$s')] | //div[@id='elementSmallNavigation']//div[@class='tab' or @class='tab active']/a[contains(text(),'%1$s')]";
     public static final String DESKTOP_PRODUCT_ADD_TO_CART_BUTTON_XPATH = "//div[@id='elementTools']//a[contains(@class,'addCart')]";

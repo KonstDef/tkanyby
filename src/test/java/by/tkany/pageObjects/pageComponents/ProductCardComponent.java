@@ -1,13 +1,15 @@
 package by.tkany.pageObjects.pageComponents;
 
 import by.tkany.pageObjects.ProductPage;
-import framework.elements.Label;
+import framework.elements.*;
 import org.openqa.selenium.By;
 
 public class ProductCardComponent {
     private final String PRODUCT_NAME_XPATH = "//a[@class='name']";
     private final String PRODUCT_NAME;
     private final String CARD_PATH;
+    private final String PRODUCT_IMAGE = "//img[@class='lazy']";
+    private final String FAST_VIEW = "//span[@class='getFastView']";
     private final Label CARD;
 
     public ProductCardComponent(String cardXpath, String productName){
@@ -26,6 +28,20 @@ public class ProductCardComponent {
 
     public boolean isPresent(){
         return CARD.isDisplayed();
+    }
+
+    public void mouseOver(){
+        Image productImage = new Image(By.xpath(CARD_PATH+PRODUCT_IMAGE));
+        productImage.waitForElementAttachment();
+        productImage.scrollIntoView();
+        productImage.moveTo();
+    }
+
+    public FastViewComponent openFastView(){
+        Label fastView = new Label(By.xpath(CARD_PATH+FAST_VIEW));
+        if(!fastView.isDisplayed()) mouseOver();
+        fastView.clickByAction();
+        return new FastViewComponent();
     }
 
     public ProductPage openProductPage(){

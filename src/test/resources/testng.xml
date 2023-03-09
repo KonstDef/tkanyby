@@ -12,6 +12,7 @@
             <class name="by.tkany.tests.CatalogueSubMenuTest"/>
             <class name="by.tkany.tests.CatalogueContainersTest"/>
             <class name="by.tkany.tests.CatalogueFilterTest"/>
+            <class name="by.tkany.tests.FastViewTest"/>
         </classes>
     </test>
 </suite>

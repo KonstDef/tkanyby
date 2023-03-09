@@ -16,8 +16,9 @@ public class DriverFactory {
         boolean isHeadless = properties.getBooleanProperty("headless");
         String headless = isHeadless ? "--headless" : "";
         String windowSize = "--window-size=" + properties.getProperty("window_size");
+        String allowOrigin = "--remote-allow-origins=*";
 
-        String[] args = new String[]{headless, windowSize};
+        String[] args = new String[]{headless, windowSize,allowOrigin};
 
         switch (browser) {
             case "chrome":

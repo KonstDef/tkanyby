@@ -41,4 +41,46 @@ public class CatalogueSteps {
     public void openProduct(String productName){
         product = catalogue.getProductCard(productName).openProductPage();
     }
+    @When ("User sorts products by {string}")
+    public void sortProductList(String sortName){
+        catalogue.sortProductList(sortName);
+    }
+    @When ("User hovers mouse over {string} card image")
+    public void moveMouseOnProduct(String sortName){
+        catalogue.getProductCard(sortName).mouseOver();
+    }
+    @When("User opens fast view for {string}")
+    public void openFastView(String sortName){
+      catalogue.setFastView(
+              catalogue.getProductCard(sortName).openFastView()
+      );
+    }
+    @Then ("Fast view window is opened")
+    public void fastViewOpened(){
+        catalogue.getFastView().assertOpened();
+    }
+    @Then ("Fast view window contains {string} name")
+    public void fastViewHasName(String productName){
+        catalogue.getFastView().assertNameEquals(productName);
+    }
+    @Then("Fast view window contains product article equals to {string}")
+    public void fastViewArticle(String article){
+        catalogue.getFastView().assertArticleEquals(article);
+    }
+    @Then("Fast view window contains product images")
+    public void fastViewHasImages(){
+        catalogue.getFastView().assertImage();
+    }
+    @Then("Fast view window contains product characteristics")
+    public void fastViewHasCharacteristics(){
+        catalogue.getFastView().assertProperties();
+    }
+    @Then("Fast view window contains add to cart button")
+    public void fastViewHasAddToCart(){
+        catalogue.getFastView().assertAddToCart();
+    }
+    @Then("Fast view window contains read more button")
+    public void fastViewReadMore(){
+        catalogue.getFastView().assertReadMore();
+    }
 }

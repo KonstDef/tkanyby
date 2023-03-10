@@ -14,6 +14,7 @@
             <class name="by.tkany.tests.CatalogueFilterTest"/>
             <class name="by.tkany.tests.FastViewTest"/>
             <class name="by.tkany.tests.BackToTopTest"/>
+            <class name="by.tkany.tests.ProductPageContainersTest"/>
         </classes>
     </test>
 </suite>

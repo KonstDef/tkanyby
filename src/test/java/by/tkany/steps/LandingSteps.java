@@ -136,4 +136,26 @@ public class LandingSteps {
         boolean expected = title.equals("is");
         landing.getFloater().assertBackToTopVisible(expected);
     }
+    @When ("User clicks on {string} navigation label")
+    public void loginPageClick(String label){
+        switch(label){
+            case "Вход":{
+                authorization = landing.getAuthorizationMenu().redirectAuth("Вход");
+                break;
+            }
+            case "Личный кабинет":{
+                user = landing.getAuthorizationMenu().redirectUser("Личный кабинет");
+                break;
+            }
+            case "Выход":{
+                landing.getAuthorizationMenu().redirectAuth("Выход");
+                break;
+            }
+        }
+    }
+    @When ("There is no {string} navigation label")
+    public void assertLichny(String navLabel){
+        landing.getAuthorizationMenu().assertPresent(navLabel);
+    }
+
 }

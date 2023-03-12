@@ -6,6 +6,10 @@
             <class name="by.tkany.tests.NavMenuCollapseTest"/>
             <class name="by.tkany.tests.NavMenuLinksTest"/>
             <class name="by.tkany.tests.FloatingMenuTest"/>
+            <class name="by.tkany.tests.BackToTopTest"/>
+            <class name="by.tkany.tests.UserLoginTest"/>
+            <class name="by.tkany.tests.UserPageMenuTest"/>
+            <class name="by.tkany.tests.UserUnloginTest"/>
             <class name="by.tkany.tests.ProductSearchTest"/>
             <class name="by.tkany.tests.CallbackFormTest"/>
             <class name="by.tkany.tests.CatalogueMenuLinksTest"/>
@@ -13,8 +17,8 @@
             <class name="by.tkany.tests.CatalogueContainersTest"/>
             <class name="by.tkany.tests.CatalogueFilterTest"/>
             <class name="by.tkany.tests.FastViewTest"/>
-            <class name="by.tkany.tests.BackToTopTest"/>
             <class name="by.tkany.tests.ProductPageContainersTest"/>
+            <class name="by.tkany.tests.ProductFastOrderTest"/>
         </classes>
     </test>
 </suite>

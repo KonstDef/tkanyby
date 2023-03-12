@@ -1,6 +1,7 @@
 package by.tkany.pageObjects;
 
 import by.tkany.pageObjects.pageComponents.BreadCrumbsComponent;
+import by.tkany.pageObjects.pageComponents.FastOrderComponent;
 import framework.elements.*;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -72,5 +73,10 @@ public class ProductPage extends BaseByTkanyPage {
     public void assertPropertiesPresent() {
         TextBox productProperties = new TextBox(By.xpath(String.format(ATTRIBUTE_ROW_BY_FIRST_COLUMN, "")));
         softAssert.assertTrue(productProperties.isDisplayed(), "Properties table on product page is not displayed:");
+    }
+    @Step("Open fast order")
+    public void openFastOrder() {
+        FAST_ORDER_BUTTON.moveAndClickByAction();
+        setFastOrder(new FastOrderComponent());
     }
 }

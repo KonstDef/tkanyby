@@ -6,3 +6,5 @@
 Tests.txt
 /src/test/java/by/tkany/tests/inP
 /src/test/java/by/tkany/tests/inP/*.java
+/src/test/resources/testData.properties
+src/test/resources/testData.properties

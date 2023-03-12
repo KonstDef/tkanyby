@@ -3,10 +3,6 @@ public class Selectors{
     public static final String REGISTRATION_FORM_DIV_BY_TEXT_XPATH = "//div[@class='bx-auth-form-line' and div[contains(@class,'label') and contains(text(),'%s')]]";
     public static final String REGISTRATION_BUTTON_XPATH = "//input[@name='Register']";
     public static final String REGISTRATION_AGREE_LABEL_XPATH = "//label[@for='userPersonalInfoReg']";
-    public static final String LOGIN_FORM_DIV_BY_TEXT_XPATH = "//div[contains(@class,'auth-by-login')]//div[@class='bx-auth-input-line' and div[contains(@class,'label') and contains(text(),'%s')]]";
-    public static final String LOGIN_BUTTON_XPATH = "//div[contains(@class,'auth-by-login')]//input[@name='Login']";
-    public static final String USER_MENU_LINK_BY_TEXT_XPATH = "//ul[@id='personalMenu']//a[contains(text(),'%s')]";
-    public static final String FAST_ORDER_INPUT_FIELD_BY_PLACEHOLDER_XPATH = "//div[contains(@class,'formLine')]//input[contains(@placeholder,'%s')]";
     public static final String DESKTOP_INFORMATION_BUTTON_BY_PLUS_OR_MINUS_CLASS_XPATH = "//div[@class='information']//a[@class='%s']";
     public static final String DESKTOP_INFORMATION_GO_TO_BASKET_BUTTON_XPATH = "//div[@id='appBasketContainer']//td[@class='goToBasket']";
     public static final String DESKTOP_CART_PRODUCT_CARD_BY_TEXT_XPATH = "//div[@id='personalCart']//div[@class='productTable']//a/span[contains(text(),'%s')]/ancestor::div[@class='tabloid']";

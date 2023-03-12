@@ -210,4 +210,11 @@ public abstract class BaseElement {
         ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].click()", element);
         log.info(String.format("%s: %s - %s;", getElementType(), by, logProperties.getProperty("clickByJS")));
     }
+
+    public String getJSValue() {
+        isElementPresent();
+        String value = (String) ((JavascriptExecutor) Browser.getDriver()).executeScript("return arguments[0].value", element);
+        log.info(String.format("%s: %s - %s = %s;", getElementType(), by, logProperties.getProperty("getJSValue"),value));
+        return value;
+    }
 }

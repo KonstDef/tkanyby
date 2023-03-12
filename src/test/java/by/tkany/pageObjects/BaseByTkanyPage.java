@@ -22,6 +22,7 @@ public class BaseByTkanyPage extends BasePage {
     private CallbackFormComponent callback = new CallbackFormComponent();
     private CatalogueNavigationComponent catalogueNavigation = new CatalogueNavigationComponent();
     private FastViewComponent fastView;
+    private FastOrderComponent fastOrder;
 
     public static SoftAssert softAssert = new SoftAssert();
 

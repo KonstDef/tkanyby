@@ -1,8 +1,7 @@
 package by.tkany.steps;
 
 import io.cucumber.java.en.*;
-
-import static by.tkany.steps.BaseSteps.product;
+import static by.tkany.steps.BaseSteps.*;
 
 public class ProductSteps {
     @Then ("Product page contains catalog navigation")
@@ -44,5 +43,37 @@ public class ProductSteps {
     @Then ("Product page contains product properties")
     public void assertPPropertiesPresent(){
         product.assertPropertiesPresent();
+    }
+    @When ("User clicks on \"Купить в 1 клик\" button")
+    public void openPFastOrder(){
+        product.openFastOrder();
+    }
+    @Then ("Fast order component is opened")
+    public void checkFastOrder(){
+        product.getFastOrder().assertIsPresent();
+    }
+    @Then ("Fast order component contains {string} title")
+    public void checkFastOrderTitle(String title){
+        product.getFastOrder().assertTitlePresent(title);
+    }
+    @Then ("Fast order component contains image")
+    public void checkFastOrderImage(){
+        product.getFastOrder().assertImagePresent();
+    }
+    @Then ("Fast order component contains price")
+    public void checkFastOrderPrice(){
+        product.getFastOrder().assertPricePresent();
+    }
+    @Then ("Fast order component {string} can be filled with {string}")
+    public void checkFastOrderInput(String inputName, String inputData){
+        product.getFastOrder().assertInputIsEnterable(inputName, inputData);
+    }
+    @Then ("Fast order component personal data agreement checkbox is clickable")
+    public void checkFastOrderCheckbox(){
+        product.getFastOrder().assertPersonaDataClickable();
+    }
+    @Then ("Fast order \"Купить в один клик\" button is clickable")
+    public void checkFastOrderButton(){
+        product.getFastOrder().assertFastBuyButtonClickable();
     }
 }

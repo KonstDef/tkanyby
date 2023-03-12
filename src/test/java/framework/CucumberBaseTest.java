@@ -9,6 +9,7 @@ import org.testng.annotations.*;
 public abstract class CucumberBaseTest {
     private TestNGCucumberRunner testNGCucumberRunner;
     public static PropertyReader properties = new PropertyReader("config.properties");
+
     public Browser driver = new Browser();
 
     @BeforeMethod(alwaysRun = true)

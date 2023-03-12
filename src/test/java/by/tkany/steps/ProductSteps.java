@@ -1,5 +1,6 @@
 package by.tkany.steps;
 
+import by.tkany.pageObjects.pageComponents.ConfirmProductComponent;
 import io.cucumber.java.en.*;
 import static by.tkany.steps.BaseSteps.*;
 
@@ -75,5 +76,31 @@ public class ProductSteps {
     @Then ("Fast order \"Купить в один клик\" button is clickable")
     public void checkFastOrderButton(){
         product.getFastOrder().assertFastBuyButtonClickable();
+    }
+    @When("User sets {double} for product")
+    public void setProductAmount(double amount){
+        product.setProductAmount(amount);
+    }
+    @When("User clicks \"В корзину\" button")
+    public void clickToCart(){
+        product.clickAddToCart();
+        product.setConfirmProduct(new ConfirmProductComponent());
+    }
+    @Then("\"Product confirm\" component is displayed")
+    public void checkProductConfirmComponent(){
+        product.getConfirmProduct().assertOpened();
+    }
+    @When("User changes amount of product at \"Cart add\" component from {double} to {double} with buttons")
+    public void changeProductConfirmAmountByButtons(double initialAmount, double targetAmount){
+        product.getConfirmProduct().setAmountWithButtons(initialAmount, targetAmount);
+    }
+    @When("User clicks \"Перейти в корзину\" button")
+    public void changeProductConfirmAmountByButtons(){
+        cart = product.getConfirmProduct().clickGoToCartButon();
+        product.setConfirmProduct(null);
+    }
+    @Then ("Product {string} is present with {double} amount")
+    public void checkCartProductAmountEquals(String productName, double amount){
+        cart.getProductCard(productName).assertAmountEquals(amount);
     }
 }

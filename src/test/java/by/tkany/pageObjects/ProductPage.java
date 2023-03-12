@@ -16,6 +16,7 @@ public class ProductPage extends BaseByTkanyPage {
     private static final String ATTRIBUTE_ROW_BY_FIRST_COLUMN = "//div[@class='detailPropertiesTable']//tr[td/span[contains(text(),'%s')]]";
     private static final String NAVIGATION_TAB = "//div[@id='elementNavigation']//div[@class='tab' or @class='tab active']/a[contains(text(),'%1$s')] | //div[@id='elementSmallNavigation']//div[@class='tab' or @class='tab active']/a[contains(text(),'%1$s')]";
     public static final Button ADD_TO_CART_BUTTON = new Button(By.xpath("//div[@id='elementTools']//a[contains(@class,'addCart')]"));
+    public static final Button ADD_TO_CART_INPUT = new Button(By.xpath("//div[@id='elementTools']//input[@class='qty']"));
     public static final Button FAST_ORDER_BUTTON = new Button(By.xpath("//div[@id='elementTools']//a[contains(@class,'fastBack')]"));
     private final BreadCrumbsComponent breadCrumbs = new BreadCrumbsComponent();
 
@@ -78,5 +79,15 @@ public class ProductPage extends BaseByTkanyPage {
     public void openFastOrder() {
         FAST_ORDER_BUTTON.moveAndClickByAction();
         setFastOrder(new FastOrderComponent());
+    }
+    @Step("Set product buy amount")
+    public void setProductAmount(double amount) {
+        ADD_TO_CART_BUTTON.moveTo();
+        ADD_TO_CART_INPUT.clearInput();
+        ADD_TO_CART_INPUT.sendKeys(Double.toString(amount));
+    }
+    @Step("Set product buy amount")
+    public void clickAddToCart() {
+        ADD_TO_CART_BUTTON.click();
     }
 }

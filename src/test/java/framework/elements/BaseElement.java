@@ -217,4 +217,8 @@ public abstract class BaseElement {
         log.info(String.format("%s: %s - %s = %s;", getElementType(), by, logProperties.getProperty("getJSValue"),value));
         return value;
     }
+    public void clearInput() {
+        isElementPresent();
+        element.sendKeys(Keys.chord(Keys.LEFT_CONTROL,"A",Keys.DELETE));
+    }
 }

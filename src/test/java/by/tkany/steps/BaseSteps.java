@@ -19,6 +19,7 @@ public class BaseSteps {
     static ProductPage product;
     static SocialPage social;
     static UserPage user;
+    static CartPage cart;
 
     @Given("User is logged in")
     public void loginViaCookies(){

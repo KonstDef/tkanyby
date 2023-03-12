@@ -23,6 +23,7 @@ public class BaseByTkanyPage extends BasePage {
     private CatalogueNavigationComponent catalogueNavigation = new CatalogueNavigationComponent();
     private FastViewComponent fastView;
     private FastOrderComponent fastOrder;
+    private ConfirmProductComponent confirmProduct;
 
     public static SoftAssert softAssert = new SoftAssert();
 

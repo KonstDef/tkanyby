@@ -111,6 +111,10 @@ public class Browser {
         wait.until(isTrue);
     }
 
+    public static void waitForMillis(long time) throws TimeoutException {
+       driver.manage().timeouts().implicitlyWait(Duration.ofMillis(time));
+    }
+
     public static void goBack() {
         driver.navigate().back();
         waitForPageToLoad();

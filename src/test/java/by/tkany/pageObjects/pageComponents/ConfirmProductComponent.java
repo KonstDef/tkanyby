@@ -32,9 +32,10 @@ public class ConfirmProductComponent {
 
         for (;repeats!=0;repeats--){
             button.clickByJS();
+            Browser.waitForjQueryLoad();
             PRICE.waitForElementAttachment();
         }
-        Browser.waitForMillis(1000);
+        Browser.waitForMillis(2000);
     }
 
     public CartPage clickGoToCartButon(){

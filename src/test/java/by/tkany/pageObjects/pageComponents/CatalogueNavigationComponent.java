@@ -1,11 +1,15 @@
 package by.tkany.pageObjects.pageComponents;
 
 import by.tkany.pageObjects.*;
+import framework.Browser;
 import framework.elements.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CatalogueNavigationComponent {
+    private static final String CATEGORY_MAIN_NAV_LINK_BY_TEXT = "//span[@class='tx']//span[@class='link-title' and contains(text(),'%s')]//ancestor::a";
+    private static final String CATEGORY_SUB_MENU_BOX = "//span[@class='tx']//span[@class='link-title' and contains(text(),'%s')]//ancestor::a/following-sibling::div";
     private static final String CATEGORY_NAV_LINK_BY_TEXT = "//div[@id='left']/a[contains(text(),'%1$s')] | //ul[@id='subLeftMenu']//a[contains(text(),'%1$s')] | //span[@class='tx']//span[@class='link-title' and contains(text(),'%1$s')]//ancestor::a";
     private static final Button CATALOGUE_MENU_TOGGLE = new Button(By.xpath("//div[@id='left']/a"));
     private static final TextBox CATALOGUE_MENU_COLLAPSIBLE = new TextBox(By.xpath("//div[@id='left']/div[contains(@class,'collapsed')]"));
@@ -34,8 +38,11 @@ public class CatalogueNavigationComponent {
     public void openSubMenuList(String labelText) {
         if (!isMenuToggled()) toggleMenu();
 
-        Label menuLabel = new Label(By.xpath(String.format(CATEGORY_NAV_LINK_BY_TEXT, labelText)));
+        Label menuLabel = new Label(By.xpath(String.format(CATEGORY_MAIN_NAV_LINK_BY_TEXT, labelText)));
         menuLabel.moveTo();
+
+        TextBox subMenu = new TextBox(By.xpath(String.format(CATEGORY_SUB_MENU_BOX,labelText)));
+        Browser.explicitlyWaitUntil(ExpectedConditions.visibilityOf(subMenu.getElement()));
     }
 
     @Step("Open submenu for active category")

@@ -11,7 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 
 public class BaseSteps {
-    PropertyReader testDataProperty = new PropertyReader("testData.properties");
+    public static PropertyReader testDataProperty = new PropertyReader("testData.properties");
     static LandingPage landing = new LandingPage();
     static CataloguePage catalogue;
     static InfoPage info;
@@ -20,6 +20,7 @@ public class BaseSteps {
     static SocialPage social;
     static UserPage user;
     static CartPage cart;
+    static OrderPage order;
 
     @Given("User is logged in")
     public void loginViaCookies(){

@@ -5,7 +5,6 @@ import framework.elements.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.w3c.dom.Text;
 
 public class ProductCardComponent {
     private final String PRODUCT_NAME_XPATH = "//a[@class='name']/span";

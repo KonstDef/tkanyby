@@ -152,18 +152,17 @@ public abstract class BaseElement {
     }
 
     public void waitForElementAttachment() {
-        FluentWait<WebDriver> wait = new FluentWait<>(Browser.getDriver())
+        FluentWait<BaseElement> wait = new FluentWait<>(this)
                 .withTimeout(Duration.ofSeconds(Browser.getTimeoutForCondition()))
-                .pollingEvery(Duration.ofMillis(100))
+                .pollingEvery(Duration.ofMillis(1000))
                 .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class);
 
-        wait.until(driver -> this.isElementPresent());
+        wait.until(BaseElement::isElementPresent);
     }
 
     public void waitToStale() {
-        isElementPresent();
-        Browser.explicitlyWaitUntil(ExpectedConditions.stalenessOf(element));
+        Browser.explicitlyWaitUntil(ExpectedConditions.stalenessOf(getElement()));
     }
 
     public void clickAndWait() {

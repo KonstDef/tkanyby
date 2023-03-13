@@ -20,6 +20,7 @@
             <class name="by.tkany.tests.ProductPageContainersTest"/>
             <class name="by.tkany.tests.ProductFastOrderTest"/>
             <class name="by.tkany.tests.ProductAddToCartTest"/>
+            <class name="by.tkany.tests.OrderFillTest"/>
         </classes>
     </test>
 </suite>

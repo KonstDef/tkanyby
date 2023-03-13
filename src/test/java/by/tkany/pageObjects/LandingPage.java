@@ -1,6 +1,5 @@
 package by.tkany.pageObjects;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class LandingPage extends BaseByTkanyPage {

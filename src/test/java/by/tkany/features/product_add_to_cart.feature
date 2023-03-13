@@ -1,7 +1,7 @@
 Feature: tkany.by
 
-  @Catalogue @Smoke
-  Scenario Outline: Catalog filters select concrete product
+  @Cart @Smoke
+  Scenario Outline: User adds product to cart
     Given User is on "Landing" page
     When User clicks "<category>" category on catalogue navigation list
     And User clicks on "<subCategory>" subcategory under catalogue navigation list

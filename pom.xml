@@ -27,6 +27,7 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.19/aspectjweaver-1.9.19.jar"
                         -Dcucumber.options="--plugin io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
                         -Dfile.encoding=${project.build.sourceEncoding}
+                        -Xmx1024m
                     </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/${suiteXmlFiles}</suiteXmlFile>

@@ -1,14 +1,18 @@
 package framework;
 
+import framework.elements.BaseElement;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -104,6 +108,21 @@ public class Browser {
     public static void waitForjQueryLoad() {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(getTimeoutForCondition()));
         wait.until(driver -> (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active==0"));
+    }
+
+    public static <T extends BaseElement,F> void waitForElementStringUpdate(T wElement,Function<T,String> func) {
+        FluentWait<T> wait = new FluentWait<>(wElement)
+                .withTimeout(Duration.ofSeconds(Browser.getTimeoutForCondition()))
+                .pollingEvery(Duration.ofMillis(1000))
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
+
+        String startValue = func.apply(wElement);
+
+        wait.until(w -> {
+            String value = func.apply(w);
+            return !value.equals(startValue);
+        });
     }
 
     public static <T, R> void explicitlyWaitUntil(Function<? super WebDriver, R> isTrue) throws TimeoutException {

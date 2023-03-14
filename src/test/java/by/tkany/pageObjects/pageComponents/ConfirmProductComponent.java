@@ -2,9 +2,11 @@ package by.tkany.pageObjects.pageComponents;
 
 import by.tkany.pageObjects.CartPage;
 import framework.Browser;
+import framework.elements.BaseElement;
 import framework.elements.Button;
 import framework.elements.TextBox;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class ConfirmProductComponent {
@@ -32,10 +34,8 @@ public class ConfirmProductComponent {
 
         for (;repeats!=0;repeats--){
             button.clickByJS();
-            Browser.waitForjQueryLoad();
-            PRICE.waitForElementAttachment();
+            Browser.waitForElementStringUpdate(PRICE, BaseElement::getText);
         }
-        Browser.waitForMillis(2000);
     }
 
     public CartPage clickGoToCartButon(){

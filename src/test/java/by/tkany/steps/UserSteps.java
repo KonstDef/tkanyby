@@ -7,13 +7,9 @@ import org.openqa.selenium.Cookie;
 import static by.tkany.steps.BaseSteps.*;
 
 public class UserSteps {
-    @When("User enters {string} to login name field")
-    public void authEnterLoginName(String login){
-        authorization.enterLoginName(login);
-    }
-    @When("User enters {string} to login password field")
-    public void authEnterLoginPassword(String password){
-        authorization.enterLoginPassword(password);
+    @When("User enters {string} to {string} field")
+    public void authEnterLoginName(String value, String field){
+        authorization.enterField(field, value);
     }
     @When("User click on \"Войти\" button")
     public void authClickEnterButton(){

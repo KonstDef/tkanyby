@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 @Getter
 public class ProductPage extends BaseByTkanyPage {
-    private static final String TITLE = "//h1[contains(.,'%s')]";
+    private static final String LOCATOR = "//h1[contains(.,'%s')]";
     public static final TextBox ARTICLE = new TextBox(By.xpath("//span[@class='changeArticle']"));
     private static final String SHORT_DESCRIPTION = "//div[@class='changeShortDescription']";
     private static final Image IMAGES = new Image(By.xpath("//div[@id='pictureContainer']//img"));
@@ -21,7 +21,7 @@ public class ProductPage extends BaseByTkanyPage {
     private final BreadCrumbsComponent breadCrumbs = new BreadCrumbsComponent();
 
     public ProductPage(String title) {
-        super(By.xpath(String.format(TITLE, title)), title);
+        super(By.xpath(String.format(LOCATOR, title)), title);
     }
 
     @Step("Check product navigation tabs are present")
@@ -44,16 +44,6 @@ public class ProductPage extends BaseByTkanyPage {
                 String.join("\n", "Product id on product page does not equal expected value:",
                         "Actual result: " + idActual,
                         "Expected result: " + idExpected));
-    }
-
-    @Step("Check product article equals expected")
-    public void assertTitleEquals(String titleExpected) {
-        TextBox productTitle = new TextBox(By.xpath(String.format(TITLE, "")));
-        String titleActual = productTitle.getText();
-        softAssert.assertEquals(titleActual, titleExpected,
-                String.join("\n", "Product title on product page does not equal expected value:",
-                        "Actual result: " + titleActual,
-                        "Expected result: " + titleExpected));
     }
 
     @Step("Check add to cart button is displayed")

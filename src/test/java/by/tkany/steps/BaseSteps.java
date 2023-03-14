@@ -14,11 +14,9 @@ public class BaseSteps {
     public static PropertyReader testDataProperty = new PropertyReader("testData.properties");
     static LandingPage landing = new LandingPage();
     static CataloguePage catalogue;
-    static InfoPage info;
     static AuthPage authorization;
     static ProductPage product;
-    static SocialPage social;
-    static UserPage user;
+    public static UserPage user;
     static CartPage cart;
     static OrderPage order;
 

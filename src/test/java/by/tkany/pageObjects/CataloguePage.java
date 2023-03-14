@@ -17,19 +17,9 @@ public class CataloguePage extends BaseByTkanyPage {
     public static final String PAGINATION_LINK = "//div[contains(@class,'pagination')]//li[//span[contains(text(),'%s')]]";
     public static final DropDown SORT_BY_DROPDOWN = new DropDown(By.xpath("//div[@class='label' and contains(text(),'Сортировать по:')]/following-sibling::div"));
     public static final String SORT_FILTER_OPENED_DROPDOWN_ITEM = "//div[@class='dropDownItems opened']/div[contains(text(),'%s')]";
-    private FiltersComponent filter;
+    private FiltersComponent filter = new FiltersComponent();
     private BreadCrumbsComponent breadcrumbs;
     private ProductCardComponent productCard;
-
-    public FiltersComponent getFilter() {
-        if (filter == null) setFilter(new FiltersComponent());
-        return filter;
-    }
-
-    public FiltersComponent getFilter(String filterName) {
-        setFilter(new FiltersComponent(filterName));
-        return filter;
-    }
 
     public ProductCardComponent getProductCard(String productName){
         return new ProductCardComponent(CATALOGUE_PRODUCT_LINK,productName);

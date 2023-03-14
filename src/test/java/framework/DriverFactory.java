@@ -1,6 +1,7 @@
 package framework;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.edge.*;
@@ -11,6 +12,7 @@ import org.openqa.selenium.safari.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class DriverFactory {
     public static WebDriver getDriver() {
         PropertyReader properties = new PropertyReader("config.properties");
@@ -55,7 +57,7 @@ public class DriverFactory {
                 WebDriverManager.iedriver().setup();
                 return new InternetExplorerDriver();
             default:
-                System.out.println("Invalid browser name");
+                log.error("Invalid browser name");
                 return null;
         }
     }

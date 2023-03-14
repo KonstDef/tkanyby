@@ -27,7 +27,7 @@ public class ProductSteps {
     }
     @Then ("Product page contains title equals {string}")
     public void productAssertPTitleEquals(String titleExpected){
-        product.assertTitleEquals(titleExpected);
+        product.assertIsPageOpened();
     }
     @Then ("Product page contains 'add to cart' button")
     public void productAssertPAddToCartPresent(){

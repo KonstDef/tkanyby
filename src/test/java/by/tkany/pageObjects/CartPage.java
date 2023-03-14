@@ -8,13 +8,13 @@ import org.openqa.selenium.By;
 
 @Getter
 public class CartPage extends BaseByTkanyPage {
-    private static final By IDENTIFIER = By.xpath("//h1[contains(.,'Корзина')]");
+    private static final By PAGE_LOCATOR = By.xpath("//h1[contains(.,'Корзина')]");
     private static final String PRODUCT_CARD_XPATH = "//div[contains(@class,'parent') and //span[contains(.,'%s')]]";
     private static final Button GO_TO_ORDER = new Button(By.xpath("//a[contains(@class,'goToOrder')]"));
     private ProductCardComponent productCard;
 
     public CartPage() {
-        super(IDENTIFIER, "Корзина");
+        super(PAGE_LOCATOR, "Cart");
     }
 
     public ProductCardComponent getProductCard(String productName){

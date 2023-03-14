@@ -34,8 +34,7 @@ public class CatalogueSteps {
     }
     @And ("User sets {string} for {string} filter")
     public void catalogueSetFilter(String filterValue, String filterName){
-        connectTestData(commaSeparate(filterName),commaSeparate(filterValue))
-                .forEach((k,v)-> catalogue.getFilter(k).setValue(v));
+        catalogue.getFilter().setValue(filterName,filterValue);
     }
     @And ("User opens product page for {string}")
     public void catalogueOpenProduct(String productName){

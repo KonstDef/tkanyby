@@ -11,7 +11,6 @@ public class FastViewComponent{
     public static final TextBox FAST_VIEW_ARTICLE =  new TextBox(By.xpath("//div[@id='appFastView']//span[@class='changeArticle']"));
     public static final Button FAST_VIEW_ADD_TO_CART = new Button(By.xpath("//div[contains(@class,'ViewInformation')]/a[contains(@class,'addCart')]"));
     public static final Image FAST_VIEW_IMAGE = new Image(By.xpath("//img[contains(@class,'FastViewPicture')]"));
-    public static final Label FAST_VIEW_MORE_LINK = new Label(By.xpath("//a[contains(@class,'MoreLink')]"));
     private static final TextBox FAST_VIEW_PROPERTIES = new TextBox(By.className("propertyList"));
 
     public void assertOpened(){

@@ -6,7 +6,6 @@ import framework.elements.BaseElement;
 import framework.elements.Button;
 import framework.elements.TextBox;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class ConfirmProductComponent {

@@ -7,7 +7,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 
 public class OrderPage extends BaseByTkanyPage {
-    private static final By IDENTIFIER = By.xpath("//h1[contains(., 'Оформление заказа')]");
+    private static final By PAGE_LOCATOR = By.xpath("//h1[contains(., 'Оформление заказа')]");
 
     private static final Button BACK_BUTTON = new Button(By.xpath("//div[contains(@class,'bx-active')]//div//a[contains(@class,'pull-left')]"));
     private static final Button NEXT_BUTTON = new Button(By.xpath("//div[contains(@class,'bx-active')]//div//a[contains(@class,'pull-right')]"));
@@ -26,7 +26,7 @@ public class OrderPage extends BaseByTkanyPage {
     private static final String SECTION_ADDRESS = "//div[@id='bx-soa-properties']//div[not(@class) and contains(.,'%s')]";
 
     public OrderPage() {
-        super(IDENTIFIER, "Order");
+        super(PAGE_LOCATOR, "Order");
     }
 
     public void clickNext() {

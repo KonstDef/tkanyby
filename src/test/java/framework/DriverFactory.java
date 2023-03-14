@@ -8,18 +8,28 @@ import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.ie.*;
 import org.openqa.selenium.safari.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DriverFactory {
     public static WebDriver getDriver() {
         PropertyReader properties = new PropertyReader("config.properties");
         String browser = properties.getProperty("browser");
+        List<String> args =  new ArrayList<>();
 
         boolean isHeadless = properties.getBooleanProperty("headless");
-        String headless = isHeadless ? "--headless" : "";
-        String windowSize = "--window-size=" + properties.getProperty("window_size");
-        boolean isAllowOrigin = properties.getBooleanProperty("remote");
-        String allowOrigin = isAllowOrigin ? "--remote-allow-origins=*" : "";
+        String headless = "--headless";
+        if(isHeadless) args.add(headless);
 
-        String[] args = new String[]{headless, windowSize, allowOrigin};
+        String windowSize = "--window-size=" + properties.getProperty("window_size");
+
+        boolean isAllowOrigin = properties.getBooleanProperty("remote");
+        String allowOrigin = "--remote-allow-origins=*";
+        if(isAllowOrigin) args.add(allowOrigin);
+
+        boolean isActivePort = properties.getBooleanProperty("activeport");
+        String activePort =  "--no-sandbox --disable-dev-shm-usage";
+        if(isActivePort) args.add(activePort);
 
         switch (browser) {
             case "chrome":

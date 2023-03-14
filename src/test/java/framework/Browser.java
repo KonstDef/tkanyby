@@ -35,7 +35,7 @@ public class Browser {
                 driver = DriverFactory.getDriver();
                 driver.manage().timeouts().implicitlyWait(timeoutForCondition, TimeUnit.SECONDS);
             }catch (Exception e) {
-                Assert.fail("Driver was not initialized");
+                Assert.fail("Driver was not initialized: "+e);
             }
             initProperties();
             instance = new Browser();

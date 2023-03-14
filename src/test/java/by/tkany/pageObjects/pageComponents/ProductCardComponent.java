@@ -4,6 +4,7 @@ import by.tkany.pageObjects.ProductPage;
 import framework.elements.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 
 public class ProductCardComponent {
@@ -15,46 +16,52 @@ public class ProductCardComponent {
     private final String QUANTITY_INPUT = "//input[@class='qty']";
     private final Label CARD;
 
-    public ProductCardComponent(String cardXpath, String productName){
-        CARD_PATH = String.format(cardXpath,productName);
+    public ProductCardComponent(String cardXpath, String productName) {
+        CARD_PATH = String.format(cardXpath, productName);
         PRODUCT_NAME = productName;
         CARD = new Label(By.xpath(CARD_PATH));
     }
 
-    public ProductCardComponent(String cardXpath){
-        this(cardXpath,"");
+    public ProductCardComponent(String cardXpath) {
+        this(cardXpath, "");
     }
 
-    public int getNum(){
+    public int getNum() {
         return CARD.countElements();
     }
 
-    public boolean isPresent(){
+    public boolean isPresent() {
         return CARD.isDisplayed();
     }
 
     @Step("Hover mouse over product image")
-    public void mouseOver(){
-        Image productImage = new Image(By.xpath(CARD_PATH+PRODUCT_IMAGE));
+    public void mouseOver() {
+        Image productImage = new Image(By.xpath(CARD_PATH + PRODUCT_IMAGE));
         productImage.waitForElementAttachment();
         productImage.scrollIntoView();
         productImage.moveTo();
     }
 
     @Step("Open fast view for product")
-    public FastViewComponent openFastView(){
-        Label fastView = new Label(By.xpath(CARD_PATH+FAST_VIEW));
-        if(!fastView.isDisplayed()) mouseOver();
+    public FastViewComponent openFastView() {
+        Label fastView = new Label(By.xpath(CARD_PATH + FAST_VIEW));
+        if (!fastView.isDisplayed()) mouseOver();
         fastView.clickByAction();
         return new FastViewComponent();
     }
 
     @Step("Open product page for card")
-    public ProductPage openProductPage(){
-        Label ProductName = new Label(By.xpath(CARD_PATH+PRODUCT_NAME_XPATH));
-        ProductName.waitForElementAttachment();
-        ProductName.scrollIntoView();
-        ProductName.clickAndWait();
+    public ProductPage openProductPage() {
+        Label ProductName = new Label(By.xpath(CARD_PATH + PRODUCT_NAME_XPATH));
+        for (int i = 0; i != 10; i++) {
+            try {
+                ProductName.scrollIntoView();
+                ProductName.clickAndWait();
+                break;
+            } catch (StaleElementReferenceException e) {
+                ProductName.waitForElementAttachment();
+            }
+        }
         return new ProductPage(PRODUCT_NAME);
     }
 
@@ -64,7 +71,7 @@ public class ProductCardComponent {
         inputField.scrollIntoView();
         double amountActual = Double.parseDouble(inputField.getJSValue());
 
-        Assert.assertEquals(amountActual,amountExpected, "For product "+PRODUCT_NAME+" added to cart quantity does not equal expected:"
-        +"\nActual: "+amountActual+"\nExpected: "+amountExpected);
+        Assert.assertEquals(amountActual, amountExpected, "For product " + PRODUCT_NAME + " added to cart quantity does not equal expected:"
+                + "\nActual: " + amountActual + "\nExpected: " + amountExpected);
     }
 }

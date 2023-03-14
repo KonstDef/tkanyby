@@ -22,6 +22,7 @@ public class DriverFactory {
         if(isHeadless) args.add(headless);
 
         String windowSize = "--window-size=" + properties.getProperty("window_size");
+        args.add(windowSize);
 
         boolean isAllowOrigin = properties.getBooleanProperty("remote");
         String allowOrigin = "--remote-allow-origins=*";
